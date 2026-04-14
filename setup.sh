@@ -1,6 +1,8 @@
 export DEBIAN_FRONTEND=noninteractive
-export INSTALL_ZSH=false
 export USERNAME=`whoami`
+
+export INSTALL_ZSH=false
+export INSTALL_RUST=true
 
 ## update and install required packages
 sudo apt-get update
@@ -46,6 +48,14 @@ then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
     echo "source $PWD/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+fi
+
+# Install & Configure Rust
+if [ "$INSTALL_RUST" = "true" ]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  source $HOME/.cargo/env
+  rustup component add rust-src
+  rustup component add rust-analyzer
 fi
 
 # Cleanup
