@@ -12,7 +12,6 @@ sudo apt-get install -y \
   gnupg2 \
   jq \
   sudo \
-  openssh-client \
   less \
   iproute2 \
   procps \
