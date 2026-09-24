@@ -57,12 +57,8 @@ if ${INSTALL_ZSH:-false}; then
     zsh
 
     #cp -f ~/dotfiles/.zshrc ~/.zshrc
-    rm -rf ${ZDOTDIR:-$HOME}/.oh-my-zsh
-    if [ -f ${ZDOTDIR:-$HOME}/.zshrc ]; then
-      mv ${ZDOTDIR:-$HOME}/.zshrc ${ZDOTDIR:-$HOME}/.zshrc.pre-oh-my-zsh
-    fi
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    #sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" "" --unattended
+    #git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     rm -rf zsh-syntax-highlighting
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
     echo "source $PWD/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
