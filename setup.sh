@@ -1,7 +1,9 @@
 export DEBIAN_FRONTEND=noninteractive
 export USERNAME=`whoami`
 
-export INSTALL_ZSH=false
+INSTALL_ZSH=true
+INSTALL_GO=true
+GO_VERSION="1.27.1"
 
 set -eo pipefail
 
@@ -49,8 +51,7 @@ sudo fc-cache -f -v
 rm -f CommitMono.zip
 
 # Install & Configure Zsh
-if [ "$INSTALL_ZSH" = "true" ]
-then
+if ${INSTALL_ZSH:-false}; then
     sudo apt-get install -y \
     fonts-powerline \
     zsh
@@ -62,6 +63,28 @@ then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
     echo "source $PWD/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+fi
+
+# Install & Configure Go
+if ${INSTALL_GO:-false}; then
+  curl -OL "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz"
+  mkdir -p /workspaces/System /workspaces/Library /workspaces/Library/Caches/go /workspaces/Library/go/gopath
+  tar xf "go${GO_VERSION}.linux-amd64.tar.gz" -C /workspaces/System/
+
+  if ${INSTALL_ZSH:-false}; then
+    RC_FILE_PATH="~/.zshrc"
+  else
+    RC_FILE_PATH="~/.bashrc"
+  fi
+
+  echo "PATH=\$PATH:/workspaces/System/go/bin" >> $RC_FILE_PATH
+  echo "GOROOT=/workspaces/System/go" >> $RC_FILE_PATH
+  echo "GO111MODULE=on" >> $RC_FILE_PATH
+  echo "GOCACHE=/workspaces/Library/Caches/gobuild" >> $RC_FILE_PATH
+  echo "GOMODCACHE=/workspaces/Library/Caches/gomod" >> $RC_FILE_PATH
+  echo "GOPATH=/workspaces/Library/go/gopath" >> $RC_FILE_PATH
+  echo "GO111MODULE=on" >> $RC_FILE_PATH
+  source $RC_FILE_PATH
 fi
 
 # Cleanup
