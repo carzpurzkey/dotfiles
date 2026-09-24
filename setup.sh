@@ -37,12 +37,14 @@ curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/Fantas
 sudo unzip FantasqueSansMono.zip -d /usr/share/fonts/FantasqueSansM
 sudo mkfontdir /usr/share/fonts/FantasqueSansM
 sudo mkfontscale /usr/share/fonts/FantasqueSansM
+rm -f FantasqueSansMono.zip
 # Install Commit Mono font
 curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/CommitMono.zip
 sudo unzip CommitMono.zip -d /usr/share/fonts/CommitMono
 sudo mkfontdir /usr/share/fonts/CommitMono
 sudo mkfontscale /usr/share/fonts/CommitMono
 sudo fc-cache -f -v
+rm -f CommitMono.zip
 
 # Install & Configure Zsh
 if [ "$INSTALL_ZSH" = "true" ]
