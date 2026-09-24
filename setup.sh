@@ -3,25 +3,27 @@ export USERNAME=`whoami`
 
 export INSTALL_ZSH=false
 
+set -eo pipefail
+
 ## update and install required packages
-# sudo apt-get update
-# sudo apt-get -y install --no-install-recommends apt-utils dialog 2>&1
-# sudo apt-get install -y \
-#   xfonts-utils \
-#   curl \
-#   git \
-#   gnupg2 \
-#   jq \
-#   sudo \
-#   less \
-#   iproute2 \
-#   procps \
-#   wget \
-#   unzip \
-#   apt-transport-https \
-#   lsb-release \
-#   vim \
-#   build-essentials
+sudo apt-get update
+sudo apt-get -y install --no-install-recommends apt-utils dialog 2>&1
+sudo apt-get install -y \
+  xfonts-utils \
+  curl \
+  git \
+  gnupg2 \
+  jq \
+  sudo \
+  less \
+  iproute2 \
+  procps \
+  wget \
+  unzip \
+  apt-transport-https \
+  lsb-release \
+  vim \
+  build-essential
 
 # Install Azure CLI
 # echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/azure-cli.list
@@ -30,16 +32,16 @@ export INSTALL_ZSH=false
 # sudo apt-get install -y azure-cli;
 
 # Install FantasqueSans Mono font
-# curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/FantasqueSansMono.zip
-# sudo unzip FantasqueSansMono.zip -d /usr/share/fonts/FantasqueSansM
-# sudo mkfontdir /usr/share/fonts/FantasqueSansM
-# sudo mkfontscale /usr/share/fonts/FantasqueSansM
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/FantasqueSansMono.zip
+sudo unzip FantasqueSansMono.zip -d /usr/share/fonts/FantasqueSansM
+sudo mkfontdir /usr/share/fonts/FantasqueSansM
+sudo mkfontscale /usr/share/fonts/FantasqueSansM
 # Install Commit Mono font
-# curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/CommitMono.zip
-# sudo unzip CommitMono.zip -d /usr/share/fonts/CommitMono
-# sudo mkfontdir /usr/share/fonts/CommitMono
-# sudo mkfontscale /usr/share/fonts/CommitMono
-# sudo fc-cache -f -v
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/CommitMono.zip
+sudo unzip CommitMono.zip -d /usr/share/fonts/CommitMono
+sudo mkfontdir /usr/share/fonts/CommitMono
+sudo mkfontscale /usr/share/fonts/CommitMono
+sudo fc-cache -f -v
 
 # Install & Configure Zsh
 if [ "$INSTALL_ZSH" = "true" ]
@@ -60,3 +62,6 @@ fi
 # sudo apt-get autoremove -y
 # sudo apt-get autoremove -y
 # sudo rm -rf /var/lib/apt/lists/*
+
+
+set +e
