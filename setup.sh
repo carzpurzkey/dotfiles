@@ -55,6 +55,7 @@ then
 
     #cp -f ~/dotfiles/.zshrc ~/.zshrc
     sudo chsh -s /usr/bin/zsh $USERNAME
+    rm -rf ~/.oh-my-zsh
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -65,6 +66,5 @@ fi
 # sudo apt-get autoremove -y
 # sudo apt-get autoremove -y
 # sudo rm -rf /var/lib/apt/lists/*
-
 
 set +e
