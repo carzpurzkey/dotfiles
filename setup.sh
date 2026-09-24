@@ -19,7 +19,9 @@ export INSTALL_ZSH=false
 #   wget \
 #   unzip \
 #   apt-transport-https \
-#   lsb-release 
+#   lsb-release \
+#   vim \
+#   build-essentials
 
 # Install Azure CLI
 # echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/azure-cli.list
@@ -27,11 +29,16 @@ export INSTALL_ZSH=false
 # sudo apt-get update
 # sudo apt-get install -y azure-cli;
 
-# Install Jetbrains Mono font
-# curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FantasqueSansMono.zip
+# Install FantasqueSans Mono font
+# curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/FantasqueSansMono.zip
 # sudo unzip FantasqueSansMono.zip -d /usr/share/fonts/FantasqueSansM
 # sudo mkfontdir /usr/share/fonts/FantasqueSansM
 # sudo mkfontscale /usr/share/fonts/FantasqueSansM
+# Install Commit Mono font
+# curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/CommitMono.zip
+# sudo unzip CommitMono.zip -d /usr/share/fonts/CommitMono
+# sudo mkfontdir /usr/share/fonts/CommitMono
+# sudo mkfontscale /usr/share/fonts/CommitMono
 # sudo fc-cache -f -v
 
 # Install & Configure Zsh
