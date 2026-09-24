@@ -48,7 +48,7 @@ then
     fonts-powerline \
     zsh
 
-    cp -f ~/dotfiles/.zshrc ~/.zshrc
+    #cp -f ~/dotfiles/.zshrc ~/.zshrc
     chsh -s /usr/bin/zsh $USERNAME
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
