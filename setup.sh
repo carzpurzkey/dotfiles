@@ -43,7 +43,7 @@ sudo mkfontscale /usr/share/fonts/FantasqueSansM
 rm -f FantasqueSansMono.zip
 # Install Commit Mono font
 curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/CommitMono.zip
-sudo rm -rf/usr/share/fonts/CommitMono
+sudo rm -rf /usr/share/fonts/CommitMono
 sudo unzip CommitMono.zip -d /usr/share/fonts/CommitMono
 sudo mkfontdir /usr/share/fonts/CommitMono
 sudo mkfontscale /usr/share/fonts/CommitMono
@@ -70,13 +70,17 @@ if ${INSTALL_GO:-false}; then
   curl -OL "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz"
   mkdir -p /workspaces/System /workspaces/Library /workspaces/Library/Caches/go /workspaces/Library/go/gopath
   tar xf "go${GO_VERSION}.linux-amd64.tar.gz" -C /workspaces/System/
-
+  rm -f "go${GO_VERSION}.linux-amd64.tar.gz"
+  
   if ${INSTALL_ZSH:-false}; then
-    RC_FILE_PATH="~/.zshrc"
+    RC_FILE_PATH="${ZDOTDIR:-$HOME}/.zshrc"
   else
-    RC_FILE_PATH="~/.bashrc"
+    RC_FILE_PATH="${ZDOTDIR:-$HOME}/.bashrc"
   fi
 
+  if [ ! -f $RC_FILE_PATH ]; then
+    touch $RC_FILE_PATH
+  fi
   echo "PATH=\$PATH:/workspaces/System/go/bin" >> $RC_FILE_PATH
   echo "GOROOT=/workspaces/System/go" >> $RC_FILE_PATH
   echo "GO111MODULE=on" >> $RC_FILE_PATH
